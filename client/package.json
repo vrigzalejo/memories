@@ -31,7 +31,7 @@
     "eject": "react-scripts eject",
     "lint": "eslint --fix",
     "pretty": "prettier --write .",
-    "prepare": "cd .. && husky install"
+    "prepare": "cd ../ && husky install ./client/.husky"
   },
   "eslintConfig": {
     "extends": [
