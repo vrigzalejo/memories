@@ -8,7 +8,11 @@ import { createPost } from '../../actions/posts'
 
 const Form = () => {
   const [postData, setPostData] = useState({
-    creator: '', title: '', message: '', tags: '', selectedFile: ''
+    creator: '',
+    title: '',
+    message: '',
+    tags: '',
+    selectedFile: '',
   })
   const classes = useStyles()
   const dispatch = useDispatch()
@@ -19,9 +23,7 @@ const Form = () => {
     dispatch(createPost(postData))
   }
 
-  const clear = () => {
-
-  }
+  const clear = () => {}
 
   return (
     <Paper className={classes.paper}>
