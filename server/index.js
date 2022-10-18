@@ -10,11 +10,11 @@ dotenv.config()
 
 const app = express()
 
-app.use('/posts', postRoutes)
-
 app.use(bodyParser.json({ limit: '30mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 app.use(cors())
+
+app.use('/posts', postRoutes)
 
 const CONNECTION_URL = `mongodb+srv://${process.env.MONGO_ATLAS_USER}:
 ${process.env.MONGO_ATLAS_PASS}@cluster0.gjlxidw.mongodb.net/?
