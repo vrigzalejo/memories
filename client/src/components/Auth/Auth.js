@@ -8,16 +8,21 @@ import {
   Container,
 } from '@material-ui/core'
 import { GoogleLogin } from '@react-oauth/google'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import jwt_decode from 'jwt-decode'
 
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import useStyles from './styles'
 import Input from './Input'
-import Icon from './icon'
+import { AUTH } from '../../constants/actionTypes'
 
 const Auth = () => {
   const classes = useStyles()
   const [showPassword, setShowPassword] = useState(false)
   const [isSignup, setIsSignup] = useState(false)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const handleShowPassword = () =>
     setShowPassword((prevShowPassword) => !prevShowPassword)
@@ -32,7 +37,16 @@ const Auth = () => {
   }
 
   const googleSuccess = async (res) => {
-    console.log(res)
+    const token = res?.credential
+    const result = jwt_decode(token)
+
+    try {
+      dispatch({ type: AUTH, data: { token, result } })
+
+      navigate('/')
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   const googleFailure = (error) => {
@@ -99,7 +113,6 @@ const Auth = () => {
           <GoogleLogin
             onSuccess={googleSuccess}
             onFailure={googleFailure}
-            useOneTap
           />
           <Grid container justify="flex-end">
             <Grid item>
