@@ -7,9 +7,12 @@ import {
   Typography,
   Container,
 } from '@material-ui/core'
+import { GoogleLogin } from '@react-oauth/google'
+
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import useStyles from './styles'
 import Input from './Input'
+import Icon from './icon'
 
 const Auth = () => {
   const classes = useStyles()
@@ -26,6 +29,14 @@ const Auth = () => {
   const switchMode = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup)
     handleShowPassword(false)
+  }
+
+  const googleSuccess = async (res) => {
+    console.log(res)
+  }
+
+  const googleFailure = (error) => {
+    console.error(error)
   }
 
   return (
@@ -85,6 +96,11 @@ const Auth = () => {
           >
             {isSignup ? 'Sign Up' : 'Sign In'}
           </Button>
+          <GoogleLogin
+            onSuccess={googleSuccess}
+            onFailure={googleFailure}
+            useOneTap
+          />
           <Grid container justify="flex-end">
             <Grid item>
               <Button onClick={switchMode}>
