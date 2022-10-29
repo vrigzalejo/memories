@@ -16,14 +16,10 @@ app.use(cors())
 
 app.use('/posts', postRoutes)
 
-const CONNECTION_URL = `mongodb+srv://${process.env.MONGO_ATLAS_USER}:
-${process.env.MONGO_ATLAS_PASS}@cluster0.gjlxidw.mongodb.net/?
-retryWrites=true&w=majority`
-
 const PORT = process.env.PORT || 5000
 
 mongoose
-  .connect(CONNECTION_URL)
+  .connect(process.env.CONNECTION_URL)
   .then(() =>
     app.listen(PORT, () => console.log(`Server running on port: ${PORT}`))
   )
