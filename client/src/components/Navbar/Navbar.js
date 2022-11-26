@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { AppBar, Avatar, Toolbar, Typography, Button } from '@material-ui/core'
 import { useDispatch } from 'react-redux'
-import { googleLogout } from '@react-oauth/google'
 
 import useStyles from './styles'
 import memories from '../../images/memories.png'
@@ -19,8 +18,6 @@ const Navbar = () => {
   const logout = () => {
     dispatch({ type: LOGOUT })
 
-    googleLogout()
-
     navigate('/')
 
     setUser(null)
@@ -31,7 +28,6 @@ const Navbar = () => {
 
     setUser(JSON.parse(localStorage.getItem('profile')))
   }, [location])
-  
 
   return (
     <AppBar className={classes.appBar} position="static" color="inherit">
@@ -58,7 +54,7 @@ const Navbar = () => {
             <Avatar
               className={classes.purple}
               alt={user.result.name}
-              src={user.result.imageUrl}
+              src={user.result.picture}
             >
               {user.result.name.charAt(0)}
             </Avatar>
