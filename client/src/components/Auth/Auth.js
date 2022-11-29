@@ -32,7 +32,7 @@ const Auth = () => {
   const [isSignup, setIsSignup] = useState(false)
   const [formData, setFormData] = useState(initialState)
   const dispatch = useDispatch()
-  const history = useNavigate()
+  const navigate = useNavigate()
 
   const handleShowPassword = () =>
     setShowPassword((prevShowPassword) => !prevShowPassword)
@@ -41,9 +41,9 @@ const Auth = () => {
     e.preventDefault()
 
     if (isSignup) {
-      dispatch(signup(formData, history))
+      dispatch(signup(formData, navigate))
     } else {
-      dispatch(signin(formData, history))
+      dispatch(signin(formData, navigate))
     }
   }
 
@@ -70,7 +70,8 @@ const Auth = () => {
   }
 
   const googleFailure = (error) => {
-    console.error(error)
+    console.log(error)
+    console.log('Google Sign In was unsuccessful. Try again later')
   }
 
   return (
