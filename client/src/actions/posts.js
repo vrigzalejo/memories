@@ -8,13 +8,13 @@ import {
 } from '../constants/actionTypes'
 import * as api from '../api'
 
-export const getPosts = () => async (dispatch) => {
+export const getPosts = (page) => async (dispatch) => {
   try {
-    const { data } = await api.fetchPosts()
+    const { data } = await api.fetchPosts(page)
 
     dispatch({ type: FETCH_ALL, payload: data })
   } catch (error) {
-    console.log(error.message)
+    console.log(error)
   }
 }
 
@@ -36,7 +36,7 @@ export const createPost = (post) => async (dispatch) => {
 
     dispatch({ type: CREATE, payload: data })
   } catch (error) {
-    console.log(error.message)
+    console.log(error)
   }
 }
 
