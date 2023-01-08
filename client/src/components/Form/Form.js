@@ -20,7 +20,7 @@ const Form = ({ currentId, setCurrentId }) => {
   const classes = useStyles()
   const dispatch = useDispatch()
   const user = JSON.parse(localStorage.getItem('profile'))
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (post) setPostData(post)
